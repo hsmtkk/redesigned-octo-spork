@@ -1,5 +1,9 @@
 import { connectDB } from "@/utils/database"
 import { UserModel } from "@/utils/schemaModels"
+import jsonwebtoken from 'jsonwebtoken'
+const { sign } = jsonwebtoken
+
+const secret_key = "nextmarket"
 
 export default defineEventHandler(async (event) => {
     console.log("login")
@@ -12,7 +16,11 @@ export default defineEventHandler(async (event) => {
         const savedUserData = await UserModel.findOne({ email: body.email })
         if (savedUserData) {
             if (body.password === savedUserData.password) {
-                return { message: "ログイン成功" }
+                const payload = {
+                    email: body.email
+                }
+                const token = sign(payload, secret_key, { expiresIn: "23h" })
+                return { message: "ログイン成功", token }
             }
             else {
                 return { message: "ログイン失敗: パスワード誤り" }
