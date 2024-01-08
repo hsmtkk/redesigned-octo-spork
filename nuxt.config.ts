@@ -4,4 +4,8 @@ export default defineNuxtConfig({
   modules: [
     '@invictus.codes/nuxt-vuetify'
   ],
+  runtimeConfig: {
+    MONGO_USERNAME: process.env.MONGO_USERNAME,
+    MONGO_PASSWORD: process.env.MONGO_PASSWORD,
+  }
 })
