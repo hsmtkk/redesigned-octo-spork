@@ -14,11 +14,11 @@
 </template>
 
 <script setup lang="ts">
-const title = ref("")
-const image = ref("")
-const price = ref("")
-const description = ref("")
-const email = ref("")
+const title = ref("Alpha")
+const image = ref("/img1.jpg")
+const price = ref("100")
+const description = ref("Blah Blah Blah")
+const email = ref("alhpa@example.com")
 
 const submit = async () => {
     console.log("submit")
